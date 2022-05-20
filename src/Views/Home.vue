@@ -56,7 +56,7 @@ export default defineComponent({
         });
     }
 
-    function addPokemon(pokemon: IPokemonDetails) {
+    function addPokemon(pokemon: IPokemonDetails, namePokemon: string) {
       myTeamPokemon.value.push(pokemon);
     }
 

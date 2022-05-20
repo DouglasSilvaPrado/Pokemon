@@ -30,7 +30,8 @@
               {{ habilidad.ability.name }}
             </p>
           </div>
-          <button class="btn btn-success" @click="$emit('onAddPokemon', pokemonSelected)">Adicionar ao Time</button>
+          <input class="form-control my-3" type="text" v-model="namePokemon" placeholder="Digite um nome para o pokemon" >
+          <button class="btn btn-success" @click="$emit('onAddPokemon', pokemonSelected, namePokemon)">Adicionar ao Time</button>
         </div>
       </div>
       <div
@@ -46,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 
 export default defineComponent({
@@ -55,8 +56,21 @@ export default defineComponent({
           type: Object as PropType<IPokemonDetails>, 
           required: true 
         },
+        namePokemon: { 
+          type: String, 
+          default: "",
+          required: true 
+        }
     },
     emits: ["onAddPokemon"]
+    ,
+    setup() {
+      const namePokemon = ref("");
+      return {
+        namePokemon,
+        
+      };
+    }
 });
 </script>
 
