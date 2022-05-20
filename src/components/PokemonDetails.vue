@@ -30,7 +30,7 @@
               {{ habilidad.ability.name }}
             </p>
           </div>
-          <button class="btn btn-success">Adicionar</button>
+          <button class="btn btn-success" @click="$emit('onAddPokemon', pokemonSelected)">Adicionar ao Time</button>
         </div>
       </div>
       <div
@@ -54,8 +54,9 @@ export default defineComponent({
         pokemonSelected: { 
           type: Object as PropType<IPokemonDetails>, 
           required: true 
-          },
-    }
+        },
+    },
+    emits: ["onAddPokemon"]
 });
 </script>
 
@@ -64,7 +65,7 @@ export default defineComponent({
     background-color: #FBAB7E;
     background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
     min-width: 400px;
-    min-height: 70vh;
+    min-height: 400px;
     margin: auto;
 }
 .card-pokemon-principal img{

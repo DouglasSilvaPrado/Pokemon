@@ -2,8 +2,6 @@
   <div class="col-12 col-md-6">
     <div class="card shadow mt-3 px-3">
       <!-- pesquisa -->
-      <hr />
-
       <div class="row listagem-pokemons">
         <div class="card card-pokemon v" v-for="pokemon in pokemons" :key="pokemon.name" @click="$emit('onSelectPokemon', pokemon)">
           <h2 class="text-capitalize">{{ pokemon.name }}</h2>
@@ -33,9 +31,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 .listagem-pokemons {
-  max-height: 70vh;
+  max-height: 500px;
   overflow-y: scroll;
 }
 
