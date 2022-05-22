@@ -57,7 +57,13 @@ export default defineComponent({
     }
 
     function addPokemon(pokemon: IPokemonDetails, namePokemon: string) {
+      if(namePokemon === ""){
+        alert("Escolha um nome para seu pokemon");
+        return;
+      }
+      pokemon.name = namePokemon;
       myTeamPokemon.value.push(pokemon);
+      alert(`${pokemon.name} adicionado ao time`);
     }
 
     function removePokemon(pokemon: IPokemonDetails) {

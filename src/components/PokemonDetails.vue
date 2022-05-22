@@ -56,11 +56,6 @@ export default defineComponent({
           type: Object as PropType<IPokemonDetails>, 
           required: true 
         },
-        namePokemon: { 
-          type: String, 
-          default: "",
-          required: true 
-        }
     },
     emits: ["onAddPokemon"]
     ,

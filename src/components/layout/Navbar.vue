@@ -4,7 +4,7 @@
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">
         <img
-          src="./assets/logo.svg"
+          src="../../assets/logo.svg"
           alt=""
           height="40"
           class="d-inline-block align-text-center"
