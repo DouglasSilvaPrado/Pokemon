@@ -1,5 +1,5 @@
 <template>
-<!-- NAVIGATION BAR -->
+  <!-- NAVIGATION BAR -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">
@@ -27,11 +27,14 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
+            <router-link class="nav-link" to="/teams">Teams</router-link>
+          </li>
+          <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
         </ul>
       </div>
     </div>
-  </nav> 
+  </nav>
 </template>

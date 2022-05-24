@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
+import PokemonTeams from '../views/PokemonTeams.vue'
 
 
 export const routerHistory = createWebHistory()
@@ -16,6 +17,11 @@ export const router = createRouter({
       path: '/about',
       component: About
     },
+    {
+      path: '/teams',
+      component: PokemonTeams
+    },
+   
    
   ]
 })
