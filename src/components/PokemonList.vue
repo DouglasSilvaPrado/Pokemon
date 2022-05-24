@@ -1,4 +1,5 @@
 <template>
+
   <div class="col-12 col-md-6">
     <div class="card shadow mt-3 px-3">
       <!-- pesquisa -->
@@ -16,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
+import { computed, defineComponent, PropType } from "vue";
 import IPokemon from "../interfaces/IPokemon";
 
 export default defineComponent({
@@ -26,7 +27,7 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ["onSelectPokemon"],
+  emits: ["onSelectPokemon"]
 
 });
 </script>
