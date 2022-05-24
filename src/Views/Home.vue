@@ -6,9 +6,10 @@
     <PokemonTeam
       :teamPokemon="myTeamPokemon"
       @on-remove-pokemon="removePokemon"
+      @on-save-team="saveTeam"
     />
 
-    <div class="row conteudo-tela-pokemons">
+    <div class="row mb-5">
       <!-- detalhes -->
       <PokemonDetails
         :pokemonSelected="pokemonSelected"
@@ -24,21 +25,26 @@
 
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+import { computed, defineComponent, onMounted, ref } from "vue";
 import IPokemon from "../interfaces/IPokemon";
 import PokemonList from "../components/PokemonList.vue";
 import api from "../services/api";
 import PokemonDetails from "../components/PokemonDetails.vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 import PokemonTeam from "../components/PokemonTeam.vue";
+import { useStore } from "../store";
+import { ADICIONA_POKEMON, REMOVER_POKEMON } from "../store/mutations-type";
+import { SAVE_TEAM } from "../store/actions-type";
+import router from "../Router";
 
 export default defineComponent({
   name: "App",
   setup() {
     const pokemons = ref<IPokemon[]>([]);
-    const pokemonSelected = ref<IPokemonDetails>();
-    const myTeamPokemon = ref(<IPokemonDetails[]>[]);
+    const pokemonSelected = ref<IPokemonDetails | any>();
+    const store = useStore();
 
+    
     async function getPokemons(): Promise<void> {
       api.getAll().then((res) => {
         pokemons.value = res.data.results;
@@ -62,16 +68,21 @@ export default defineComponent({
         return;
       }
       pokemon.name = namePokemon;
-      myTeamPokemon.value.push(pokemon);
-      alert(`${pokemon.name} adicionado ao time`);
+      store.commit(ADICIONA_POKEMON, pokemon);
     }
 
-    function removePokemon(pokemon: IPokemonDetails) {
+    function removePokemon(pokemon:  IPokemonDetails) {
       if (confirm(`Deseja remover o ${pokemon.name} do seu time ?`)) {
-        myTeamPokemon.value = myTeamPokemon.value.filter(
-          (p) => p.name !== pokemon.name
-        );
+        store.commit(REMOVER_POKEMON, pokemon);
       }
+    }
+    async function saveTeam() {
+      alert("Time salvo com sucesso");
+      console.log(store.state.myTeamPokemon);
+      store.dispatch(SAVE_TEAM, store.state.myTeamPokemon);
+      store.state.allTeams.push(...store.state.myTeamPokemon);
+      store.state.myTeamPokemon = [];  
+      router.push("/teams");  
     }
 
     onMounted(() => {
@@ -79,12 +90,15 @@ export default defineComponent({
     });
 
     return {
+      store,
       pokemons,
       selectPokemon,
       pokemonSelected,
       addPokemon,
-      myTeamPokemon,
+      myTeamPokemon: computed(() => store.state.myTeamPokemon),
+      allTeams: computed(() => store.state.allTeams),
       removePokemon,
+      saveTeam,
     };
   },
   components: { PokemonList, PokemonDetails, PokemonTeam },
@@ -92,7 +106,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.conteudo-tela-pokemons {
-  margin-bottom: 100px;
-}
+
 </style>
