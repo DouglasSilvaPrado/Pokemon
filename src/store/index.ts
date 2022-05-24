@@ -2,7 +2,7 @@ import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 import api from "../services/api";
-import { GET_TEAMS, SAVE_TEAM } from "./actions-type";
+import { DELETE_TEAM, GET_TEAMS, SAVE_TEAM } from "./actions-type";
 import {
   ADICIONA_POKEMON,
   DEFINE_TEAMS,
@@ -26,6 +26,22 @@ export const store = createStore<Estado>({
       const pokemonFormateed: IPokemonDetails = {
         id: pokemon.id,
         name: pokemon.name,
+        types:[
+          {
+            type: {
+              name: pokemon.types[0].type.name
+            }
+          }
+        ],
+        height: pokemon.height,
+        weight: pokemon.weight,
+        abilities: [
+          {
+            ability: {
+              name: pokemon.abilities[0].ability.name
+            }
+          }
+        ],
         sprites: {
           other: {
             dream_world: {
@@ -52,8 +68,13 @@ export const store = createStore<Estado>({
       });
     },
     [SAVE_TEAM](contexto, team: IPokemonDetails[]) {
-      api.saveTeam(team).then((res) => {});
+      api.saveTeam(team).then((res) => {
+        console.log(res);
+      });
     },
+    [DELETE_TEAM](contexto, id) {
+      api.deleteTeam(id).then((res) => {});
+    }
   },
 });
 
