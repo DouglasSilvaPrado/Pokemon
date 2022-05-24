@@ -1,7 +1,7 @@
 export default interface IPokemonDetails {
     name: string;
     id: number;
-    types: [
+    types?: [
         {
             type: {
                 name: string
@@ -9,9 +9,9 @@ export default interface IPokemonDetails {
         },
         
     ];
-    height: number;
-    weight: number;
-    abilities: [
+    height?: number;
+    weight?: number;
+    abilities?: [
         {
             id: number;
             ability: {
