@@ -8,11 +8,16 @@ import {
   DEFINE_TEAMS,
   REMOVER_POKEMON,
 } from "./mutations-type";
+import VuexPersistence from 'vuex-persist'
 
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
   allTeams: IPokemonDetails[];
 }
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
 
 export const key: InjectionKey<Store<Estado>> = Symbol();
 
@@ -60,22 +65,27 @@ export const store = createStore<Estado>({
     [DEFINE_TEAMS](state, teams: IPokemonDetails[]) {
       state.allTeams = teams;
     },
+    [SAVE_TEAM](state) {
+      state.allTeams.push({...state.myTeamPokemon});
+      state.myTeamPokemon = [];
+    }
   },
   actions: {
     [GET_TEAMS]({ commit }) {
-      api.getTeams().then((res) => {
+      api.getTeams().then((res): void => {
         commit(DEFINE_TEAMS, res.data);
       });
     },
-    [SAVE_TEAM](contexto, team: IPokemonDetails[]) {
-      api.saveTeam(team).then((res) => {
-        console.log(res);
-      });
-    },
-    [DELETE_TEAM](contexto, id) {
+    // [SAVE_TEAM](contexto, team: IPokemonDetails[]): void {
+    //   api.saveTeam(team).then((res) => {
+    //     console.log(res);
+    //   });
+    // },
+    [DELETE_TEAM](contexto, id): void {
       api.deleteTeam(id).then((res) => {});
     }
   },
+  plugins: [new VuexPersistence().plugin]
 });
 
 export function useStore(): Store<Estado> {

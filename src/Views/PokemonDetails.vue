@@ -47,7 +47,6 @@ export default defineComponent({
   setup() {
     const pokemon = ref<IPokemonDetails | any>();
     let id = router.currentRoute.value.params.id;
-
     return { pokemon, id };
   },
   created() {

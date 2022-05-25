@@ -1,7 +1,7 @@
 <template>
   <div class="container my-5">
     <h2>Times Pokemons</h2>
-    <div class="row" v-for="team  in allTeams" :key="team.id">
+    <div class="row" v-for="team, key  in allTeams" :key="key">
       <div class="col my-3 bg-ligth" v-for="(pokemon, key) in team" :key="key">
         <router-link :to="`/pokemon/${pokemon.id}`">
           <div class="card card-pokemon v">
@@ -15,7 +15,7 @@
       </div>
 
       <div class="col">
-        <button disabled class="btn btn-danger my-3" @click="deleteTeam(team.id)">
+        <button disabled class="btn btn-danger my-3">
           Excluir Time
         </button>
       </div>
@@ -24,30 +24,14 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted } from "vue";
+import { computed, defineComponent } from "vue";
 import { useStore } from "../store";
-import { DELETE_TEAM, GET_TEAMS } from "../store/actions-type";
 
 export default defineComponent({
   setup() {
     const store = useStore();
-    store.dispatch(GET_TEAMS);
 
-    function deleteTeam(id: number) {
-      store.dispatch(DELETE_TEAM, id);
-      relod();
-    }
-
-    function relod() {
-      setTimeout(() => {
-        store.dispatch(GET_TEAMS);
-      }, 1000);
-    }
-
-    onMounted(() => {
-      relod();
-    });
-    return { allTeams: computed(() => store.state.allTeams), deleteTeam };
+    return { allTeams: computed(() => store.state.allTeams) };
   },
 });
 </script>

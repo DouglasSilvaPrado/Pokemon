@@ -78,13 +78,9 @@ export default defineComponent({
     }
     async function saveTeam() {
       alert("Time salvo com sucesso");
-      console.log(store.state.myTeamPokemon);
-      store.dispatch(SAVE_TEAM, store.state.myTeamPokemon);
-      store.state.allTeams.push(...store.state.myTeamPokemon);
-      store.state.myTeamPokemon = [];  
+      store.commit(SAVE_TEAM, store.state.myTeamPokemon);
       router.push("/teams");  
     }
-
     onMounted(() => {
       getPokemons();
     });
