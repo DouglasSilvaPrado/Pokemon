@@ -34,7 +34,7 @@ import IPokemonDetails from "../interfaces/IPokemonDetails";
 import PokemonTeam from "../components/PokemonTeam.vue";
 import { useStore } from "../store";
 import { ADICIONA_POKEMON, REMOVER_POKEMON } from "../store/mutations-type";
-import { SAVE_TEAM } from "../store/actions-type";
+import { ASAVE_TEAM } from "../store/actions-type";
 import router from "../Router";
 
 export default defineComponent({
@@ -79,7 +79,7 @@ export default defineComponent({
     }
     async function saveTeam() {
       alert("Time salvo com sucesso");
-      store.commit(SAVE_TEAM, store.state.myTeamPokemon);
+      store.dispatch(ASAVE_TEAM, store.state.myTeamPokemon);
       router.push("/teams");  
     }
     onMounted(() => {

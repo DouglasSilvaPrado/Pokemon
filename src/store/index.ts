@@ -10,6 +10,7 @@ import {
   DELETE_TEAM,
 } from "./mutations-type";
 import VuexPersistence from 'vuex-persist'
+import { ADELETE_TEAM, ASAVE_TEAM } from "./actions-type";
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
   allTeams: IPokemonDetails[];
@@ -76,6 +77,12 @@ export const store = createStore<Estado>({
     },
   },
   actions: {
+    [ASAVE_TEAM]({ commit }) {
+      commit(SAVE_TEAM);
+    },
+    [ADELETE_TEAM]({ commit }, team) {
+      commit(DELETE_TEAM, team);
+    },
    
   },
   plugins: [new VuexPersistence().plugin]
