@@ -1,17 +1,24 @@
 <template>
-<a class="btn btn-success m-2 text-white" href="javascript:history.back()"><i class="bi bi-arrow-left-circle-fill"></i></a>
-  <div class="container my-5 position-absolute top-50 start-50 translate-middle">
+  <a class="btn btn-success m-2 text-white" href="javascript:history.back()"
+    ><i class="bi bi-arrow-left-circle-fill"></i
+  ></a>
+  <div
+    class="container my-5 position-absolute top-50 start-50 translate-middle"
+  >
     <div class="row">
       <!-- col left -->
       <div class="col-md-3">
         <div class="text-center m-3">
-          <h3>ID {{ pokemon.id }}</h3>
+          <h3>ID {{ id }}</h3>
           <h3>Weight {{ pokemon.weight }}</h3>
           <h3>Height {{ pokemon.height }}</h3>
           <h3>
-            Abilities {{ pokemon.abilities[0].ability.name }} /
-            {{ pokemon.abilities[1].ability.name }}
+            Abilities
+            <span v-for="ability in pokemon.abilities" :key="ability.id">
+              {{ ability.ability.name }}
+            </span>
           </h3>
+
           <h3>Type {{ pokemon.types[0].type.name }}</h3>
         </div>
       </div>
