@@ -30,8 +30,18 @@
               {{ habilidad.ability.name }}
             </p>
           </div>
-          <input class="form-control my-3" type="text" v-model="namePokemon" placeholder="Digite um nome para o pokemon" >
-          <button class="btn btn-success" @click="$emit('onAddPokemon', pokemonSelected, namePokemon)">Adicionar ao Time</button>
+          <input
+            class="form-control my-3"
+            type="text"
+            v-model="namePokemon"
+            placeholder="Digite um nome para o pokemon"
+          />
+          <button
+            class="btn btn-success"
+            @click="addPokemon(pokemonSelected, namePokemon)"
+          >
+            Adicionar ao Time
+          </button>
         </div>
       </div>
       <div
@@ -49,36 +59,43 @@
 <script lang="ts">
 import { defineComponent, PropType, ref } from "vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
+import { store } from "../store";
+import { ADICIONA_POKEMON } from "../store/mutations-type";
 
 export default defineComponent({
-   props:{
-        pokemonSelected: { 
-          type: Object as PropType<IPokemonDetails>, 
-          required: true 
-        },
+  props: {
+    pokemonSelected: {
+      type: Object as PropType<IPokemonDetails>,
+      required: true,
     },
-    emits: ["onAddPokemon"]
-    ,
-    setup() {
-      const namePokemon = ref("");
-      return {
-        namePokemon,
-        
-      };
+  },
+  setup() {
+    const namePokemon = ref("");
+    function addPokemon(pokemon: IPokemonDetails, namePokemon: string) {
+      if (namePokemon === "") {
+        alert("Escolha um nome para seu pokemon");
+        return;
+      }
+      pokemon.name = namePokemon;
+      store.commit(ADICIONA_POKEMON, pokemon);
     }
+    return {
+        namePokemon,
+        addPokemon,
+      };
+  },
 });
 </script>
 
 <style scoped>
-.card-pokemon-principal{
-    background-color: #FBAB7E;
-    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
-    min-width: 400px;
-    min-height: 400px;
-    margin: auto;
+.card-pokemon-principal {
+  background-color: #fbab7e;
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  min-width: 400px;
+  min-height: 400px;
+  margin: auto;
 }
-.card-pokemon-principal img{
-    height: 120px;
+.card-pokemon-principal img {
+  height: 120px;
 }
-
 </style>
