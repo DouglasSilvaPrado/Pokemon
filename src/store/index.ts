@@ -6,10 +6,10 @@ import {
   ADICIONA_POKEMON,
   DEFINE_TEAMS,
   REMOVER_POKEMON,
-  SAVE_TEAM
+  SAVE_TEAM,
+  DELETE_TEAM
 } from "./mutations-type";
 import VuexPersistence from 'vuex-persist'
-
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
   allTeams: IPokemonDetails[];
@@ -68,6 +68,11 @@ export const store = createStore<Estado>({
     [SAVE_TEAM](state) {
       state.allTeams.push({...state.myTeamPokemon});
       state.myTeamPokemon = [];
+    },
+    [DELETE_TEAM](state, team) {
+     state.allTeams = state.allTeams.filter(
+        (t) => t !== team
+      );
     }
   },
   actions: {
