@@ -15,7 +15,7 @@
       </div>
 
       <div class="col">
-        <button disabled class="btn btn-danger my-3">
+        <button class="btn btn-danger my-3" @click="deleteTeam(team)">
           Excluir Time
         </button>
       </div>
@@ -26,12 +26,17 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useStore } from "../store";
+import { DELETE_TEAM } from "../store/mutations-type";
 
 export default defineComponent({
   setup() {
     const store = useStore();
 
-    return { allTeams: computed(() => store.state.allTeams) };
+    function deleteTeam(team:any) {
+      store.commit(DELETE_TEAM, team);
+    }
+    
+    return { allTeams: computed(() => store.state.allTeams), deleteTeam };
   },
 });
 </script>
