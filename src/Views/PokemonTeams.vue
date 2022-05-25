@@ -32,13 +32,15 @@ import { computed, defineComponent } from "vue";
 import router from "../Router";
 import { useStore } from "../store";
 import { ADICIONA_POKEMON, DELETE_TEAM } from "../store/mutations-type";
+import {ADELETE_TEAM} from "../store/actions-type";
 
 export default defineComponent({
   setup() {
     const store = useStore();
 
     function deleteTeam(team:any) {
-      store.commit(DELETE_TEAM, team);
+      // store.commit(DELETE_TEAM, team);
+       store.dispatch(ADELETE_TEAM, team);
     }
     function editTeam(team:any) {
       for (let i = 0; i <= 4; i++) {

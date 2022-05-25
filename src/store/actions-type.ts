@@ -1,3 +1,2 @@
-export const GET_TEAMS = "GET_TEAMS"
-export const SAVE_TEAM = "SAVE_TEAM"
-export const DELETE_TEAM = "DELETE_TEAM"
+export const ASAVE_TEAM = "ASAVE_TEAM"
+export const ADELETE_TEAM = "DELETE_TEAM"
