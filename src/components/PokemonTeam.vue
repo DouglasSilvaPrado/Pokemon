@@ -20,16 +20,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import IPokemonDetails from "../interfaces/IPokemonDetails";
+import { computed, defineComponent, PropType } from "vue";
+import { store } from "../store";
 
 export default defineComponent({
-  props:{
-        teamPokemon: { 
-          type: Array as PropType<IPokemonDetails[]>, 
-          required: true 
-        },
-    },
+ setup(){
+  return {
+     teamPokemon: computed(() => store.state.myTeamPokemon)
+  }  
+ },
   emits: ["onRemovePokemon", "onSaveTeam"],
 });
 </script>

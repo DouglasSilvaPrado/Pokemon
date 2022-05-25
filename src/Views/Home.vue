@@ -4,7 +4,6 @@
   <div class="container my-5">
     <!-- time -->
     <PokemonTeam
-      :teamPokemon="myTeamPokemon"
       @on-remove-pokemon="removePokemon"
       @on-save-team="saveTeam"
     />
@@ -25,7 +24,7 @@
 
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import IPokemon from "../interfaces/IPokemon";
 import PokemonList from "../components/PokemonList.vue";
 import api from "../services/api";
@@ -43,7 +42,6 @@ export default defineComponent({
     const pokemonSelected = ref<IPokemonDetails | any>();
     const store = useStore();
 
-  
     async function selectPokemon(pokemon: IPokemon) {
       api
         .getOne(pokemon.url)
@@ -80,7 +78,6 @@ export default defineComponent({
       selectPokemon,
       pokemonSelected,
       addPokemon,
-      myTeamPokemon: computed(() => store.state.myTeamPokemon),
       allTeams: computed(() => store.state.allTeams),
       removePokemon,
       saveTeam,
