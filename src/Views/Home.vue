@@ -69,6 +69,7 @@ export default defineComponent({
       }
       pokemon.name = namePokemon;
       store.commit(ADICIONA_POKEMON, pokemon);
+      console.log(store.state.myTeamPokemon);
     }
 
     function removePokemon(pokemon:  IPokemonDetails) {
