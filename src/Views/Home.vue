@@ -17,7 +17,7 @@
       />
 
       <!-- lista -->
-      <PokemonList :pokemons="pokemons" @on-select-pokemon="selectPokemon" />
+      <PokemonList  @on-select-pokemon="selectPokemon" />
     </div>
   </div>
   
@@ -40,17 +40,10 @@ import router from "../Router";
 export default defineComponent({
   name: "App",
   setup() {
-    const pokemons = ref<IPokemon[]>([]);
     const pokemonSelected = ref<IPokemonDetails | any>();
     const store = useStore();
 
-    
-    async function getPokemons(): Promise<void> {
-      api.getAll().then((res) => {
-        pokemons.value = res.data.results;
-      });
-    }
-
+  
     async function selectPokemon(pokemon: IPokemon) {
       api
         .getOne(pokemon.url)
@@ -69,7 +62,6 @@ export default defineComponent({
       }
       pokemon.name = namePokemon;
       store.commit(ADICIONA_POKEMON, pokemon);
-      console.log(store.state.myTeamPokemon);
     }
 
     function removePokemon(pokemon:  IPokemonDetails) {
@@ -82,13 +74,9 @@ export default defineComponent({
       store.dispatch(ASAVE_TEAM, store.state.myTeamPokemon);
       router.push("/teams");  
     }
-    onMounted(() => {
-      getPokemons();
-    });
 
     return {
       store,
-      pokemons,
       selectPokemon,
       pokemonSelected,
       addPokemon,

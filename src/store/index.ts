@@ -16,9 +16,6 @@ interface Estado {
   allTeams: IPokemonDetails[];
 }
 
-const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
-})
 
 export const key: InjectionKey<Store<Estado>> = Symbol();
 

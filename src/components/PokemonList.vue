@@ -17,15 +17,33 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
+import {defineComponent, onMounted, ref } from "vue";
 import IPokemon from "../interfaces/IPokemon";
+import api from "../services/api";
 
 export default defineComponent({
-  props: {
-    pokemons: {
-      type: Array as PropType<IPokemon[]>,
-      required: true,
-    },
+  // props: {
+  //   pokemons: {
+  //     type: Array as PropType<IPokemon[]>,
+  //     required: true,
+  //   },
+  // },
+  setup(){
+    const pokemons = ref<IPokemon[]>([]);
+
+    async function getPokemons(): Promise<void> {
+      api.getAll().then((res) => {
+        pokemons.value = res.data.results;
+      });
+    }
+
+    onMounted(() => {
+      getPokemons();
+    });
+
+    return {
+      pokemons,
+    };
   },
   emits: ["onSelectPokemon"]
 
