@@ -2,11 +2,11 @@
   <div class="col-12 col-md-6">
     <section class="d-flex justify-content-center">
       <div
-        v-if="pokemonSelected"
+        v-if="pokemonSelected.name != '' "
         class="card card-pokemon-principal shadow p-3 my-3 text-center"
       >
         <h1 class="text-capitalize">{{ pokemonSelected.name }}</h1>
-        <img
+        <img 
           :src="pokemonSelected.sprites.other.dream_world.front_default"
           alt="Pokemon-pincipal"
         />
@@ -33,12 +33,12 @@
           <input
             class="form-control my-3"
             type="text"
-            v-model="namePokemon"
+            v-model="namePoke"
             placeholder="Digite um nome para o pokemon"
           />
           <button
             class="btn btn-success"
-            @click="addPokemon(pokemonSelected, namePokemon)"
+            @click="addPokemon(pokemonSelected, namePoke)"
           >
             Adicionar ao Time
           </button>
@@ -57,20 +57,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 import { store } from "../store";
 import { ADICIONA_POKEMON } from "../store/mutations-type";
 
 export default defineComponent({
-  props: {
-    pokemonSelected: {
-      type: Object as PropType<IPokemonDetails>,
-      required: true,
-    },
-  },
   setup() {
-    const namePokemon = ref("");
+    const namePoke = ref("");
     function addPokemon(pokemon: IPokemonDetails, namePokemon: string) {
       if (namePokemon === "") {
         alert("Escolha um nome para seu pokemon");
@@ -78,10 +72,12 @@ export default defineComponent({
       }
       pokemon.name = namePokemon;
       store.commit(ADICIONA_POKEMON, pokemon);
+      namePoke.value = "";
     }
     return {
-        namePokemon,
+        namePoke,
         addPokemon,
+        pokemonSelected: computed(() => store.state.pokemonSelected),
       };
   },
 });

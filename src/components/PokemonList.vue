@@ -7,7 +7,7 @@
           class="card card-pokemon v"
           v-for="pokemon in pokemons"
           :key="pokemon.name"
-          @click="$emit('onSelectPokemon', pokemon)"
+          @click="selectPokemon(pokemon)"
         >
           <h2 class="text-capitalize">{{ pokemon.name }}</h2>
           <img
@@ -28,15 +28,28 @@
 import { defineComponent, onMounted, ref } from "vue";
 import IPokemon from "../interfaces/IPokemon";
 import api from "../services/api";
+import { store } from "../store";
 
 export default defineComponent({
   setup() {
     const pokemons = ref<IPokemon[]>([]);
-
+    
     async function getPokemons(): Promise<void> {
       api.getAll().then((res) => {
         pokemons.value = res.data.results;
       });
+    }
+
+    async function selectPokemon(pokemon: IPokemon) {
+      api
+        .getOne(pokemon.url)
+        .then((res) => {
+          store.state.pokemonSelected = res.data;
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     onMounted(() => {
@@ -45,9 +58,9 @@ export default defineComponent({
 
     return {
       pokemons,
+      selectPokemon
     };
   },
-  emits: ["onSelectPokemon"],
 });
 </script>
 

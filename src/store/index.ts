@@ -14,6 +14,7 @@ import { ADELETE_TEAM, ASAVE_TEAM } from "./actions-type";
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
   allTeams: IPokemonDetails[];
+  pokemonSelected: IPokemonDetails[];
 }
 
 
@@ -23,6 +24,33 @@ export const store = createStore<Estado>({
   state: {
     myTeamPokemon: [],
     allTeams: [],
+    pokemonSelected: {
+      id: 0,
+      name: '',
+      types:[
+        {
+          type: {
+            name: ''
+          }
+        }
+      ],
+      height: 0,
+      weight: 0,
+      abilities: [
+        {
+          ability: {
+            name: ''
+          }
+        }
+      ],
+      sprites: {
+        other: {
+          dream_world: {
+            front_default: '',
+          },
+        },
+      },
+    }
   },
   mutations: {
     [ADICIONA_POKEMON](state, pokemon: IPokemonDetails) {
