@@ -1,12 +1,12 @@
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
-import api from "../services/api";
-import { DELETE_TEAM, GET_TEAMS, SAVE_TEAM } from "./actions-type";
+
 import {
   ADICIONA_POKEMON,
   DEFINE_TEAMS,
   REMOVER_POKEMON,
+  SAVE_TEAM
 } from "./mutations-type";
 import VuexPersistence from 'vuex-persist'
 
@@ -71,19 +71,7 @@ export const store = createStore<Estado>({
     }
   },
   actions: {
-    [GET_TEAMS]({ commit }) {
-      api.getTeams().then((res): void => {
-        commit(DEFINE_TEAMS, res.data);
-      });
-    },
-    // [SAVE_TEAM](contexto, team: IPokemonDetails[]): void {
-    //   api.saveTeam(team).then((res) => {
-    //     console.log(res);
-    //   });
-    // },
-    [DELETE_TEAM](contexto, id): void {
-      api.deleteTeam(id).then((res) => {});
-    }
+   
   },
   plugins: [new VuexPersistence().plugin]
 });
