@@ -16,7 +16,11 @@
 
       <div class="col">
         <button class="btn btn-danger my-3" @click="deleteTeam(team)">
-          Excluir Time
+          <i class="bi bi-trash"></i>
+        </button>
+        <br>
+        <button class="btn btn-info my-3" @click="editTeam(team)">
+          <i class="bi bi-pencil-square"></i>
         </button>
       </div>
     </div>
@@ -25,8 +29,9 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
+import router from "../Router";
 import { useStore } from "../store";
-import { DELETE_TEAM } from "../store/mutations-type";
+import { ADICIONA_POKEMON, DELETE_TEAM } from "../store/mutations-type";
 
 export default defineComponent({
   setup() {
@@ -35,8 +40,15 @@ export default defineComponent({
     function deleteTeam(team:any) {
       store.commit(DELETE_TEAM, team);
     }
+    function editTeam(team:any) {
+      for (let i = 0; i <= 4; i++) {
+        store.commit(ADICIONA_POKEMON, team[i]);
+      }
+      deleteTeam(team);
+      router.push("/");
+    }
     
-    return { allTeams: computed(() => store.state.allTeams), deleteTeam };
+    return { allTeams: computed(() => store.state.allTeams), deleteTeam, editTeam };
   },
 });
 </script>

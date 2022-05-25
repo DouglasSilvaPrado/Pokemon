@@ -52,7 +52,6 @@ export default defineComponent({
   created() {
     api.getById(this.id).then((res) => {
       this.pokemon = res.data;
-      console.log(this.pokemon);
     });
   },
   props: {

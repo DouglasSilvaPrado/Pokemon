@@ -7,7 +7,7 @@ import {
   DEFINE_TEAMS,
   REMOVER_POKEMON,
   SAVE_TEAM,
-  DELETE_TEAM
+  DELETE_TEAM,
 } from "./mutations-type";
 import VuexPersistence from 'vuex-persist'
 interface Estado {
@@ -73,7 +73,7 @@ export const store = createStore<Estado>({
      state.allTeams = state.allTeams.filter(
         (t) => t !== team
       );
-    }
+    },
   },
   actions: {
    
