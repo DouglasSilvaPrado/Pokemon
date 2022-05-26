@@ -2,7 +2,7 @@
   <div class="container my-5">
     <h2>Times Pokemons</h2>
     <div class="row" v-for="team, key  in allTeams" :key="key">    
-      <div class="col my-3 bg-ligth" v-for="(pokemon, key) in team" :key="key">
+      <div class="col my-3 bg-ligth" v-for="pokemon in team" :key="pokemon.id">
         <router-link :to="`/pokemon/${pokemon.id}`">
           <div class="card card-pokemon v">
             <h2 class="text-capitalize">{{ pokemon.name }}</h2>

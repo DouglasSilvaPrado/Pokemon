@@ -13,7 +13,7 @@ import VuexPersistence from 'vuex-persist'
 import { ADELETE_TEAM, ASAVE_TEAM } from "./actions-type";
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
-  allTeams: IPokemonDetails[];
+  allTeams: IPokemonDetails[] | any;
   pokemonSelected: IPokemonDetails;
 }
 
