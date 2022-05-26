@@ -25,5 +25,14 @@ export default interface IPokemonDetails {
                 front_default: string;
             }
         }
-    }
+    };
+    stats: [
+        {
+            base_stat: number,
+        },
+        {
+            base_stat: number,
+        },
+
+    ]
 }

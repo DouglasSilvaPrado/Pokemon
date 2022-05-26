@@ -1,7 +1,7 @@
 <template>
   <div class="container my-5">
     <h2>Times Pokemons</h2>
-    <div class="row" v-for="team, key  in allTeams" :key="key">
+    <div class="row" v-for="team, key  in allTeams" :key="key">    
       <div class="col my-3 bg-ligth" v-for="(pokemon, key) in team" :key="key">
         <router-link :to="`/pokemon/${pokemon.id}`">
           <div class="card card-pokemon v">
@@ -28,18 +28,18 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import router from "../Router";
 import { useStore } from "../store";
-import { ADICIONA_POKEMON, DELETE_TEAM } from "../store/mutations-type";
+import { ADICIONA_POKEMON} from "../store/mutations-type";
 import {ADELETE_TEAM} from "../store/actions-type";
+import IPokemonDetails from "../interfaces/IPokemonDetails";
 
 export default defineComponent({
   setup() {
     const store = useStore();
 
-    function deleteTeam(team:any) {
-      // store.commit(DELETE_TEAM, team);
+    function deleteTeam(team: IPokemonDetails) {
        store.dispatch(ADELETE_TEAM, team);
     }
     function editTeam(team:any) {
