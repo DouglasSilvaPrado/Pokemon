@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent} from "vue";
+import { computed, defineComponent } from "vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 import router from "../Router";
 import { store } from "../store";
@@ -58,12 +58,47 @@ export default defineComponent({
     async function saveTeam() {
       alert("Time salvo com sucesso");
       store.dispatch(ASAVE_TEAM, store.state.myTeamPokemon);
-      router.push("/teams");  
+      store.state.pokemonSelected = {
+        id: 0,
+        name: "",
+        types: [
+          {
+            type: {
+              name: "",
+            },
+          },
+        ],
+        height: 0,
+        weight: 0,
+        abilities: [
+          {
+            ability: {
+              name: "",
+            },
+          },
+        ],
+        sprites: {
+          other: {
+            dream_world: {
+              front_default: "",
+            },
+          },
+        },
+        stats: [
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+        ],
+      };
+      router.push("/teams");
     }
     return {
       teamPokemon: computed(() => store.state.myTeamPokemon),
       removePokemon,
-      saveTeam
+      saveTeam,
     };
   },
 });

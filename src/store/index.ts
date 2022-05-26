@@ -13,8 +13,8 @@ import VuexPersistence from 'vuex-persist'
 import { ADELETE_TEAM, ASAVE_TEAM } from "./actions-type";
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
-  allTeams: IPokemonDetails[];
-  pokemonSelected: IPokemonDetails[];
+  allTeams: IPokemonDetails[] | any;
+  pokemonSelected: IPokemonDetails;
 }
 
 
@@ -50,6 +50,14 @@ export const store = createStore<Estado>({
           },
         },
       },
+      stats: [
+        {
+          base_stat: 0,
+        },
+        {
+          base_stat: 0,
+        },
+      ]
     }
   },
   mutations: {
@@ -80,6 +88,14 @@ export const store = createStore<Estado>({
             },
           },
         },
+        stats: [
+          {
+            base_stat: pokemon.stats[0].base_stat
+          },
+          {
+            base_stat: pokemon.stats[1].base_stat
+          }
+        ]
       };
       state.myTeamPokemon.push(pokemonFormateed);
     },

@@ -45,7 +45,6 @@ export default defineComponent({
         .getOne(pokemon.url)
         .then((res) => {
           store.state.pokemonSelected = res.data;
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);
