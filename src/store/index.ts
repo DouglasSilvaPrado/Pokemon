@@ -14,7 +14,7 @@ import { ADELETE_TEAM, ASAVE_TEAM } from "./actions-type";
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
   allTeams: IPokemonDetails[];
-  pokemonSelected: IPokemonDetails[];
+  pokemonSelected: IPokemonDetails;
 }
 
 
