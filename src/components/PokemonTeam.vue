@@ -10,7 +10,7 @@
         >
           <img
             :src="pokemon.sprites.other.dream_world.front_default"
-            :alt="pokemon.name"
+             :alt="`Imagem do pokemon ${pokemon.name}`"
           />
           <h2 class="text-capitalize">{{ pokemon.name }}</h2>
           <button
@@ -81,6 +81,18 @@ import { REMOVER_POKEMON } from "../store/mutations-type";
           },
         },
         stats: [
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
           {
             base_stat: 0,
           },

@@ -9,14 +9,10 @@
           @click="selectPokemon(pokemon)"
         >
           <h2 class="text-capitalize">{{ pokemon.name }}</h2>
-          <img
-            :src="
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' +
-              pokemon.url.split('/')[6] +
-              '.svg'
-            "
-            :alt="pokemon.name"
-          />
+          <img 
+          :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`"
+          :alt="`Imagem do pokemon ${pokemon.name}`"
+          >
         </div>
       </div>
     </div>
@@ -55,7 +51,7 @@ onMounted(() => {
 
 <style>
 .listagem-pokemons {
-  max-height: 500px;
+  max-height: 73vh;
   overflow-y: scroll;
 }
 

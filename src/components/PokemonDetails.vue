@@ -8,7 +8,7 @@
         <h1 class="text-capitalize">{{ pokemonSelected.name }}</h1>
         <img 
           :src="pokemonSelected.sprites.other.dream_world.front_default"
-          alt="Pokemon-pincipal"
+          alt="imagem do pokemon selecionado da lista de pokemons"
         />
 
         <hr />
@@ -49,7 +49,7 @@
         class="card card-pokemon-principal shadow p-3 my-3 text-center"
       >
         <h1>???????</h1>
-        <img src="../assets/egg.svg" alt="Pokemon-pincipal" />
+        <img src="../assets/egg.svg" alt="Ovo de pokemon branco com diversas manchas verde" />
         <hr />
       </div>
     </section>
@@ -85,7 +85,7 @@ import { ADICIONA_POKEMON } from "../store/mutations-type";
   background-color: #fbab7e;
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   min-width: 400px;
-  min-height: 400px;
+  min-height: 73vh;
   margin: auto;
 }
 .card-pokemon-principal img {
