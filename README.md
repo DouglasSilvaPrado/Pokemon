@@ -1,6 +1,6 @@
 # Deploy 
-https://pokemonteam.vercel.app/
-https://pokemonteam.netlify.app/
+### https://pokemonteam.vercel.app/
+### https://pokemonteam.netlify.app/
 
 # Vue 3 + TypeScript + Vite
 
