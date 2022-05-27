@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
-import PokemonTeams from '../views/PokemonTeams.vue'
-import PokemonDetails from '../views/PokemonDetails.vue'
+import Home from '../Views/Home.vue'
+import About from '../Views/About.vue'
+import PokemonTeams from '../Views/PokemonTeams.vue'
+import PokemonDetails from '../Views/PokemonDetails.vue'
 
 
 
