@@ -50,7 +50,7 @@ import IPokemonDetails from "../interfaces/IPokemonDetails";
 import router from "../Router";
 import api from "../services/api";
 
-    const pokemon = ref<IPokemonDetails | any>();
+    const pokemon = ref<IPokemonDetails>();
     let id = router.currentRoute.value.params.id;
     
     onBeforeMount(async () => {

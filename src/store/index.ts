@@ -4,7 +4,6 @@ import IPokemonDetails from "../interfaces/IPokemonDetails";
 
 import {
   ADICIONA_POKEMON,
-  DEFINE_TEAMS,
   REMOVER_POKEMON,
   SAVE_TEAM,
   DELETE_TEAM,
@@ -56,6 +55,18 @@ export const store = createStore<Estado>({
         {
           base_stat: 0,
         },
+        {
+          base_stat: 0,
+        },
+        {
+          base_stat: 0,
+        },
+        {
+          base_stat: 0,
+        },
+        {
+          base_stat: 0,
+        },
       ]
     }
   },
@@ -93,7 +104,20 @@ export const store = createStore<Estado>({
           },
           {
             base_stat: pokemon.stats[1].base_stat
-          }
+          },
+          {
+            base_stat: pokemon.stats[2].base_stat
+          },
+          {
+            base_stat: pokemon.stats[3].base_stat
+          },
+          {
+            base_stat: pokemon.stats[4].base_stat
+          },
+          {
+            base_stat: pokemon.stats[5].base_stat
+          },
+          
         ]
       };
       state.myTeamPokemon.push(pokemonFormateed);
