@@ -15,6 +15,7 @@
           <h3>
             Abilities
             <span v-for="ability in pokemon?.abilities" :key="ability.id">
+              <br>
               {{ ability.ability.name }}
             </span>
           </h3>
