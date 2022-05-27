@@ -124,7 +124,7 @@ export const store = createStore<Estado>({
     },
     [REMOVER_POKEMON](state, pokemon: IPokemonDetails) {
       state.myTeamPokemon = state.myTeamPokemon.filter(
-        (p) => p.id !== pokemon.id
+        (p) => p !== pokemon
       );
     },
     [SAVE_TEAM](state) {
