@@ -132,7 +132,7 @@ import { ADICIONA_POKEMON } from "../store/mutations-type";
   background-color: #fbab7e;
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   min-width: 400px;
-  min-height: 73vh;
+  min-height: 550px;
   margin: auto;
 }
 .card-pokemon-principal img {

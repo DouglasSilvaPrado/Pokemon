@@ -51,7 +51,7 @@ onMounted(() => {
 
 <style>
 .listagem-pokemons {
-  max-height: 73vh;
+  max-height: 555px;
   overflow-y: scroll;
 }
 
