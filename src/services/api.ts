@@ -7,7 +7,7 @@ export default {
   getOne: (url: string) => {
     return http.get(`${url}`);
   },
-  getById: (id: number) => {
+  getById: (id: string | string[]) => {
     return http.get(`pokemon/${id}`);
   },
  

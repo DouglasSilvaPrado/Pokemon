@@ -33,6 +33,18 @@ export default interface IPokemonDetails {
         {
             base_stat: number,
         },
+        {
+            base_stat: number,
+        },
+        {
+            base_stat: number,
+        },
+        {
+            base_stat: number,
+        },
+        {
+            base_stat: number,
+        },
 
     ]
 }

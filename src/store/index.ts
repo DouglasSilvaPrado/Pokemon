@@ -4,7 +4,6 @@ import IPokemonDetails from "../interfaces/IPokemonDetails";
 
 import {
   ADICIONA_POKEMON,
-  DEFINE_TEAMS,
   REMOVER_POKEMON,
   SAVE_TEAM,
   DELETE_TEAM,
@@ -13,10 +12,9 @@ import VuexPersistence from 'vuex-persist'
 import { ADELETE_TEAM, ASAVE_TEAM } from "./actions-type";
 interface Estado {
   myTeamPokemon: IPokemonDetails[];
-  allTeams: IPokemonDetails[] | any;
+  allTeams: IPokemonDetails[][];
   pokemonSelected: IPokemonDetails;
 }
-
 
 export const key: InjectionKey<Store<Estado>> = Symbol();
 
@@ -51,6 +49,18 @@ export const store = createStore<Estado>({
         },
       },
       stats: [
+        {
+          base_stat: 0,
+        },
+        {
+          base_stat: 0,
+        },
+        {
+          base_stat: 0,
+        },
+        {
+          base_stat: 0,
+        },
         {
           base_stat: 0,
         },
@@ -94,7 +104,20 @@ export const store = createStore<Estado>({
           },
           {
             base_stat: pokemon.stats[1].base_stat
-          }
+          },
+          {
+            base_stat: pokemon.stats[2].base_stat
+          },
+          {
+            base_stat: pokemon.stats[3].base_stat
+          },
+          {
+            base_stat: pokemon.stats[4].base_stat
+          },
+          {
+            base_stat: pokemon.stats[5].base_stat
+          },
+          
         ]
       };
       state.myTeamPokemon.push(pokemonFormateed);
@@ -103,9 +126,6 @@ export const store = createStore<Estado>({
       state.myTeamPokemon = state.myTeamPokemon.filter(
         (p) => p.id !== pokemon.id
       );
-    },
-    [DEFINE_TEAMS](state, teams: IPokemonDetails[]) {
-      state.allTeams = teams;
     },
     [SAVE_TEAM](state) {
       state.allTeams.push({...state.myTeamPokemon});

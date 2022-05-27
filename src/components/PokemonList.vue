@@ -1,7 +1,6 @@
 <template>
   <div class="col-12 col-md-6">
     <div class="card shadow mt-3 px-3">
-      <!-- pesquisa -->
       <div class="row listagem-pokemons">
         <div
           class="card card-pokemon v"
@@ -10,62 +9,49 @@
           @click="selectPokemon(pokemon)"
         >
           <h2 class="text-capitalize">{{ pokemon.name }}</h2>
-          <img
-            :src="
-              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/' +
-              pokemon.url.split('/')[6] +
-              '.svg'
-            "
-            :alt="pokemon.name"
-          />
+          <img 
+          :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`"
+          :alt="`Imagem do pokemon ${pokemon.name}`"
+          >
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
 import IPokemon from "../interfaces/IPokemon";
 import api from "../services/api";
 import { store } from "../store";
 
-export default defineComponent({
-  setup() {
-    const pokemons = ref<IPokemon[]>([]);
-    
-    async function getPokemons(): Promise<void> {
-      api.getAll().then((res) => {
-        pokemons.value = res.data.results;
-      });
-    }
+const pokemons = ref<IPokemon[]>([]);
 
-    async function selectPokemon(pokemon: IPokemon) {
-      api
-        .getOne(pokemon.url)
-        .then((res) => {
-          store.state.pokemonSelected = res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+async function getPokemons(): Promise<void> {
+  await api.getAll().then((res) => {
+    pokemons.value = res.data.results;
+  });
+}
 
-    onMounted(() => {
-      getPokemons();
+async function selectPokemon(pokemon: IPokemon) {
+  await api
+    .getOne(pokemon.url)
+    .then((res) => {
+      store.state.pokemonSelected = res.data;
+    })
+    .catch((err) => {
+      console.log(err);
     });
+}
 
-    return {
-      pokemons,
-      selectPokemon
-    };
-  },
+onMounted(() => {
+  getPokemons();
 });
 </script>
 
 <style>
 .listagem-pokemons {
-  max-height: 500px;
+  max-height: 73vh;
   overflow-y: scroll;
 }
 

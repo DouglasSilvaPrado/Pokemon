@@ -10,7 +10,7 @@
         >
           <img
             :src="pokemon.sprites.other.dream_world.front_default"
-            :alt="pokemon.name"
+             :alt="`Imagem do pokemon ${pokemon.name}`"
           />
           <h2 class="text-capitalize">{{ pokemon.name }}</h2>
           <button
@@ -39,24 +39,20 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 import router from "../Router";
 import { store } from "../store";
 import { ASAVE_TEAM } from "../store/actions-type";
 import { REMOVER_POKEMON } from "../store/mutations-type";
 
-export default defineComponent({
-  setup() {
-    function removePokemon(pokemon: IPokemonDetails) {
-      if (confirm(`Deseja remover o ${pokemon.name} do seu time ?`)) {
+ 
+   function removePokemon(pokemon: IPokemonDetails) {
         store.commit(REMOVER_POKEMON, pokemon);
-      }
     }
 
-    async function saveTeam() {
-      alert("Time salvo com sucesso");
+     function saveTeam() {
       store.dispatch(ASAVE_TEAM, store.state.myTeamPokemon);
       store.state.pokemonSelected = {
         id: 0,
@@ -91,17 +87,27 @@ export default defineComponent({
           {
             base_stat: 0,
           },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
         ],
       };
       router.push("/teams");
     }
-    return {
-      teamPokemon: computed(() => store.state.myTeamPokemon),
-      removePokemon,
-      saveTeam,
-    };
-  },
-});
+
+    const teamPokemon = computed(() => {
+      return store.state.myTeamPokemon;
+    });
+  
 </script>
 <style>
 </style>

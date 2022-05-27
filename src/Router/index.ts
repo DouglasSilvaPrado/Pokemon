@@ -26,7 +26,6 @@ export const router = createRouter({
     {
       path: '/pokemon/:id',
       component: PokemonDetails,
-      props: true
     }
    
    
