@@ -71,6 +71,53 @@ import { ADICIONA_POKEMON } from "../store/mutations-type";
       }
       store.commit(ADICIONA_POKEMON, pokemon);
       namePoke.value = "";
+      store.state.pokemonSelected = {
+        id: 0,
+        name: "",
+        types: [
+          {
+            type: {
+              name: "",
+            },
+          },
+        ],
+        height: 0,
+        weight: 0,
+        abilities: [
+          {
+            ability: {
+              name: "",
+            },
+          },
+        ],
+        sprites: {
+          other: {
+            dream_world: {
+              front_default: "",
+            },
+          },
+        },
+        stats: [
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+          {
+            base_stat: 0,
+          },
+        ],
+      };
     }
 
     const pokemonSelected = computed(() => {
@@ -85,7 +132,7 @@ import { ADICIONA_POKEMON } from "../store/mutations-type";
   background-color: #fbab7e;
   background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
   min-width: 400px;
-  min-height: 73vh;
+  min-height: 550px;
   margin: auto;
 }
 .card-pokemon-principal img {

@@ -1,5 +1,5 @@
 <template>
-  <div class="row bg-light" v-if="teamPokemon.length > 0">
+  <div class="row bg-light my-3" v-if="teamPokemon.length > 0">
     <h1 class="text-center mb-4">Seu Time Pokémon</h1>
     <div class="col-12 col-md-12">
       <div class="row">
