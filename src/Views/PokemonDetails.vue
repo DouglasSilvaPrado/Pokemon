@@ -44,27 +44,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { onBeforeMount, ref } from "vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 import router from "../Router";
 import api from "../services/api";
 
-export default defineComponent({
-  setup() {
     const pokemon = ref<IPokemonDetails | any>();
     let id = router.currentRoute.value.params.id;
-    return { pokemon, id };
-  },
-  created() {
-    api.getById(this.id).then((res) => {
-      this.pokemon = res.data;
+    
+    onBeforeMount(async () => {
+       await api.getById(id).then((res) => {
+       pokemon.value = res.data;
     });
-  },
-  props: {
-    id: {
-      type: Number,
-    },
-  },
-});
+    })
 </script>

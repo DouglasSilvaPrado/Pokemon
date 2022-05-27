@@ -1,7 +1,7 @@
 <template>
   <div class="container my-5">
     <h2>Times Pokemons</h2>
-    <div class="row" v-for="team, key  in allTeams" :key="key">    
+    <div class="row" v-for="(team, key) in allTeams" :key="key">
       <div class="col my-3 bg-ligth" v-for="pokemon in team" :key="pokemon.id">
         <router-link :to="`/pokemon/${pokemon.id}`">
           <div class="card card-pokemon v">
@@ -11,14 +11,14 @@
               alt="Pokemon-pincipal"
             />
           </div>
-        </router-link> 
+        </router-link>
       </div>
 
       <div class="col">
         <button class="btn btn-danger my-3" @click="deleteTeam(team)">
           <i class="bi bi-trash"></i>
         </button>
-        <br>
+        <br />
         <button class="btn btn-info my-3" @click="editTeam(team)">
           <i class="bi bi-pencil-square"></i>
         </button>
@@ -27,37 +27,36 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { computed } from "vue";
 import router from "../Router";
 import { useStore } from "../store";
-import { ADICIONA_POKEMON} from "../store/mutations-type";
-import {ADELETE_TEAM} from "../store/actions-type";
+import { ADICIONA_POKEMON } from "../store/mutations-type";
+import { ADELETE_TEAM } from "../store/actions-type";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 
-export default defineComponent({
-  setup() {
+
     const store = useStore();
 
     function deleteTeam(team: IPokemonDetails) {
-       store.dispatch(ADELETE_TEAM, team);
+        store.dispatch(ADELETE_TEAM, team);
     }
-    function editTeam(team:any) {
+    function editTeam(team: any) {
       for (let i = 0; i <= 4; i++) {
         store.commit(ADICIONA_POKEMON, team[i]);
       }
       deleteTeam(team);
       router.push("/");
     }
-    
-    return { allTeams: computed(() => store.state.allTeams), deleteTeam, editTeam };
-  },
-});
+
+    const allTeams = computed(() => {
+      return store.state.allTeams;
+    });
 </script>
 
 <style scoped>
-  a{
-    text-decoration: none;
-    color: black;
-  }
+a {
+  text-decoration: none;
+  color: black;
+}
 </style>

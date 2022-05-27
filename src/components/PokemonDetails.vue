@@ -56,31 +56,28 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+<script setup lang="ts">
+import { computed, ref } from "vue";
 import IPokemonDetails from "../interfaces/IPokemonDetails";
 import { store } from "../store";
 import { ADICIONA_POKEMON } from "../store/mutations-type";
 
-export default defineComponent({
-  setup() {
+
     const namePoke = ref("");
     function addPokemon(pokemon: IPokemonDetails, namePokemon: string) {
       if (namePokemon === "") {
-        alert("Escolha um nome para seu pokemon");
-        return;
+      }else{
+        pokemon.name = namePokemon;
       }
-      pokemon.name = namePokemon;
       store.commit(ADICIONA_POKEMON, pokemon);
       namePoke.value = "";
     }
-    return {
-        namePoke,
-        addPokemon,
-        pokemonSelected: computed(() => store.state.pokemonSelected),
-      };
-  },
-});
+
+    const pokemonSelected = computed(() => {
+      return store.state.pokemonSelected;
+    });
+
+
 </script>
 
 <style scoped>

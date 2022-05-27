@@ -1,7 +1,6 @@
 <template>
   <div class="col-12 col-md-6">
     <div class="card shadow mt-3 px-3">
-      <!-- pesquisa -->
       <div class="row listagem-pokemons">
         <div
           class="card card-pokemon v"
@@ -24,42 +23,33 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from "vue";
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
 import IPokemon from "../interfaces/IPokemon";
 import api from "../services/api";
 import { store } from "../store";
 
-export default defineComponent({
-  setup() {
-    const pokemons = ref<IPokemon[]>([]);
-    
-    async function getPokemons(): Promise<void> {
-      api.getAll().then((res) => {
-        pokemons.value = res.data.results;
-      });
-    }
+const pokemons = ref<IPokemon[]>([]);
 
-    async function selectPokemon(pokemon: IPokemon) {
-      api
-        .getOne(pokemon.url)
-        .then((res) => {
-          store.state.pokemonSelected = res.data;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+async function getPokemons(): Promise<void> {
+  await api.getAll().then((res) => {
+    pokemons.value = res.data.results;
+  });
+}
 
-    onMounted(() => {
-      getPokemons();
+async function selectPokemon(pokemon: IPokemon) {
+  await api
+    .getOne(pokemon.url)
+    .then((res) => {
+      store.state.pokemonSelected = res.data;
+    })
+    .catch((err) => {
+      console.log(err);
     });
+}
 
-    return {
-      pokemons,
-      selectPokemon
-    };
-  },
+onMounted(() => {
+  getPokemons();
 });
 </script>
 
