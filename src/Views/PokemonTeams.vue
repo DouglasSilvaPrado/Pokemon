@@ -38,10 +38,10 @@ import IPokemonDetails from "../interfaces/IPokemonDetails";
 
     const store = useStore();
 
-    function deleteTeam(team: IPokemonDetails) {
+    function deleteTeam(team: IPokemonDetails[]): void {
         store.dispatch(ADELETE_TEAM, team);
     }
-    function editTeam(team: any) {
+    function editTeam(team: IPokemonDetails[]) {
       for (let i = 0; i <= 4; i++) {
         store.commit(ADICIONA_POKEMON, team[i]);
       }
