@@ -131,7 +131,7 @@ export const store = createStore<Estado>({
       state.allTeams.push({...state.myTeamPokemon});
       state.myTeamPokemon = [];
     },
-    [DELETE_TEAM](state, team) {
+    [DELETE_TEAM](state, team: IPokemonDetails[]) {
      state.allTeams = state.allTeams.filter(
         (t) => t !== team
       );
@@ -141,7 +141,7 @@ export const store = createStore<Estado>({
     [ASAVE_TEAM]({ commit }) {
       commit(SAVE_TEAM);
     },
-    [ADELETE_TEAM]({ commit }, team) {
+    [ADELETE_TEAM]({ commit }, team: IPokemonDetails[]) {
       commit(DELETE_TEAM, team);
     },
    
