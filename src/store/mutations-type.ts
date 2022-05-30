@@ -1,4 +1,5 @@
-export const  ADICIONA_POKEMON = 'ADICIONA_POKEMON'
-export const REMOVER_POKEMON = 'REMOVER_POKEMON'
-export const SAVE_TEAM = 'SAVE_TEAM'
-export const DELETE_TEAM = 'DELETE_TEAM'
+export const  ADICIONA_POKEMON = "ADICIONA_POKEMON";
+export const REMOVER_POKEMON = "REMOVER_POKEMON";
+export const SAVE_TEAM = "SAVE_TEAM";
+export const DELETE_TEAM = "DELETE_TEAM";
+
